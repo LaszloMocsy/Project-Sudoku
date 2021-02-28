@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Sudoku WPF" Height="410" Width="495" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="350" Margin="10,10,0,0" VerticalAlignment="Top" Width="350" Background="Black">
+        <Grid x:Name="SudokuGrid" HorizontalAlignment="Left" Height="350" Margin="10,10,0,0" VerticalAlignment="Top" Width="350" Background="Black">
             <Grid x:Name="BoxAA" HorizontalAlignment="Left" Height="108" Margin="8,8,0,0" VerticalAlignment="Top" Width="108" Background="Black">
                 <Button x:Name="ItemAA" Content="*" FontSize="24" FontWeight="Bold" Height="36" Width="36" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="White" Click="Button_Clicked"/>
                 <Button x:Name="ItemAB" Content="*" FontSize="24" FontWeight="Bold" Height="36" Width="36" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="White" Margin="36,0,0,0" Click="Button_Clicked"/>
