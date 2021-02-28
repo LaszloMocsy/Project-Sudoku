@@ -23,7 +23,7 @@ namespace SudokuWPF
     {
         List<Button> ItemList = new List<Button>(); //List of all Items in the sudoku
         List<Button> ItemEmptyList = new List<Button>(); //List of all empty Items in the sudoku
-        List<string> ItemAvaibleList = new List<string>(); //List of ItemEmtpyList's Items avaible chars
+        List<string> ItemAvailableList = new List<string>(); //List of ItemEmtpyList's Items avaible chars
         Brush ColorDefault = Brushes.Black;
         Brush ColorUser = Brushes.Blue;
         List<char> Chars = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -54,6 +54,7 @@ namespace SudokuWPF
         List<int> BoxG = new List<int> { 54, 55, 56, 63, 64, 65, 72, 73, 74 };
         List<int> BoxH = new List<int> { 57, 58, 59, 66, 67, 68, 75, 76, 77 };
         List<int> BoxI = new List<int> { 60, 61, 62, 69, 70, 71, 78, 79, 80 };
+        bool _available = true;
 
         public MainWindow()
         {
@@ -208,29 +209,172 @@ namespace SudokuWPF
         {
             this.IsEnabled = false; SudokuGrid.IsEnabled = false;
 
-            while(ItemEmptyList.Count() != 0)
+            do
             {
                 ItemEmptyList.Clear();
-                ItemAvaibleList.Clear();
+                ItemAvailableList.Clear();
 
                 int listIndex = 0;
                 foreach (Button button in ItemList)
                 {
                     if (button.Content.ToString() == "")
                     {
-                        ItemEmptyList.Add(button);
+                        ItemEmptyList.Add(button); Console.WriteLine("Button -> " + button.Name);
 
+                        List<char> _CharAvailableList = new List<char>(); _CharAvailableList.Clear();
                         foreach (char Char in Chars)
                         {
+                            _available = true;
 
+                            if (HorizontalA.Contains(listIndex))
+                            {
+                                Contains(HorizontalA, Char);
+                            }
+                            else if (HorizontalB.Contains(listIndex))
+                            {
+                                Contains(HorizontalB, Char);
+                            }
+                            else if (HorizontalC.Contains(listIndex))
+                            {
+                                Contains(HorizontalC, Char);
+                            }
+                            else if (HorizontalD.Contains(listIndex))
+                            {
+                                Contains(HorizontalD, Char);
+                            }
+                            else if (HorizontalE.Contains(listIndex))
+                            {
+                                Contains(HorizontalE, Char);
+                            }
+                            else if (HorizontalF.Contains(listIndex))
+                            {
+                                Contains(HorizontalF, Char);
+                            }
+                            else if (HorizontalG.Contains(listIndex))
+                            {
+                                Contains(HorizontalG, Char);
+                            }
+                            else if (HorizontalH.Contains(listIndex))
+                            {
+                                Contains(HorizontalH, Char);
+                            }
+                            else if (HorizontalI.Contains(listIndex))
+                            {
+                                Contains(HorizontalI, Char);
+                            }
+
+                            if (VerticalA.Contains(listIndex))
+                            {
+                                Contains(VerticalA, Char);
+                            }
+                            else if (VerticalB.Contains(listIndex))
+                            {
+                                Contains(VerticalB, Char);
+                            }
+                            else if (VerticalC.Contains(listIndex))
+                            {
+                                Contains(VerticalC, Char);
+                            }
+                            else if (VerticalD.Contains(listIndex))
+                            {
+                                Contains(VerticalD, Char);
+                            }
+                            else if (VerticalE.Contains(listIndex))
+                            {
+                                Contains(VerticalE, Char);
+                            }
+                            else if (VerticalF.Contains(listIndex))
+                            {
+                                Contains(VerticalF, Char);
+                            }
+                            else if (VerticalG.Contains(listIndex))
+                            {
+                                Contains(VerticalG, Char);
+                            }
+                            else if (VerticalH.Contains(listIndex))
+                            {
+                                Contains(VerticalH, Char);
+                            }
+                            else if (VerticalI.Contains(listIndex))
+                            {
+                                Contains(VerticalI, Char);
+                            }
+
+                            if (BoxA.Contains(listIndex))
+                            {
+                                Contains(BoxA, Char);
+                            }
+                            else if (BoxB.Contains(listIndex))
+                            {
+                                Contains(BoxB, Char);
+                            }
+                            else if (BoxC.Contains(listIndex))
+                            {
+                                Contains(BoxC, Char);
+                            }
+                            else if (BoxD.Contains(listIndex))
+                            {
+                                Contains(BoxD, Char);
+                            }
+                            else if (BoxE.Contains(listIndex))
+                            {
+                                Contains(BoxE, Char);
+                            }
+                            else if (BoxF.Contains(listIndex))
+                            {
+                                Contains(BoxF, Char);
+                            }
+                            else if (BoxG.Contains(listIndex))
+                            {
+                                Contains(BoxG, Char);
+                            }
+                            else if (BoxH.Contains(listIndex))
+                            {
+                                Contains(BoxH, Char);
+                            }
+                            else if (BoxI.Contains(listIndex))
+                            {
+                                Contains(BoxI, Char);
+                            }
+
+                            if (_available)
+                            {
+                                _CharAvailableList.Add(Char);
+                            }
+                        }
+
+                        foreach (char _char in _CharAvailableList)
+                        {
+                            Console.WriteLine(_char.ToString());
+                        }
+                        if (_CharAvailableList.Count == 1)
+                        {
+                            Refresh(button, _CharAvailableList[0].ToString(), true);
+                            MessageBox.Show(button.Name + " : " + _CharAvailableList[0].ToString());
                         }
                     }
 
                     listIndex++;
+
+                    Thread.Sleep(100);
                 }
-            }
+
+                Thread.Sleep(100);
+            } while (ItemEmptyList.Count() != 0);
+            MessageBox.Show("Done!");
 
             this.IsEnabled = true; SudokuGrid.IsEnabled = true;
+        }
+
+        void Contains(List<int> List, char Char)
+        {
+            foreach (int index in List)
+            {
+                if (ItemList[index].Content.ToString() == Char.ToString())
+                {
+                    _available = false;
+                }
+            }
         }
     }
 }
