@@ -349,17 +349,17 @@ namespace SudokuWPF
                         }
                         if (_CharAvailableList.Count == 1)
                         {
-                            Refresh(button, _CharAvailableList[0].ToString(), true);
-                            MessageBox.Show(button.Name + " : " + _CharAvailableList[0].ToString());
+                            Refresh(button, _CharAvailableList[0].ToString(), true); Console.WriteLine(button.Name + " : " + _CharAvailableList[0] + " - OK!");
+                            //MessageBox.Show(button.Name + " : " + _CharAvailableList[0].ToString());
                         }
                     }
 
                     listIndex++;
 
-                    Thread.Sleep(100);
+                    //Thread.Sleep(10);
                 }
 
-                Thread.Sleep(100);
+                //Thread.Sleep(10);
             } while (ItemEmptyList.Count() != 0);
             MessageBox.Show("Done!");
 
