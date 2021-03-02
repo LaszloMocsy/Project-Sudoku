@@ -23,6 +23,7 @@ namespace SudokuWPF
     {
         List<Button> ItemList = new List<Button>(); //List of all Items in the sudoku
         List<Button> ItemEmptyList = new List<Button>(); //List of all empty Items in the sudoku
+        List<Button> ItemCheckList = new List<Button>(); //List for check the loop
         List<string> ItemAvailableList = new List<string>(); //List of ItemEmtpyList's Items avaible chars
         Brush ColorDefault = Brushes.Black;
         Brush ColorUser = Brushes.Blue;
@@ -209,6 +210,8 @@ namespace SudokuWPF
         {
             this.IsEnabled = false; SudokuGrid.IsEnabled = false;
 
+            ItemCheckList.Clear();
+            bool _loop = true;
             do
             {
                 ItemEmptyList.Clear();
@@ -359,8 +362,19 @@ namespace SudokuWPF
                     //Thread.Sleep(10);
                 }
 
+                if(ItemEmptyList.Count() == ItemCheckList.Count()) //Loop detection
+                {
+                    _loop = false;
+                    MessageBox.Show("Loop has detected!");
+                }
+                ItemCheckList.Clear();
+                foreach(Button button in ItemEmptyList)
+                {
+                    ItemCheckList.Add(button);
+                }
+
                 //Thread.Sleep(10);
-            } while (ItemEmptyList.Count() != 0);
+            } while (ItemEmptyList.Count() != 0 && _loop);
             MessageBox.Show("Done!");
 
             this.IsEnabled = true; SudokuGrid.IsEnabled = true;
@@ -374,6 +388,15 @@ namespace SudokuWPF
                 {
                     _available = false;
                 }
+            }
+        }
+
+        private void Clear_Clicked(object sender, RoutedEventArgs e)
+        {
+            foreach(Button button in ItemList)
+            {
+                button.Content = "";
+                Refresh(button, "", false);
             }
         }
     }

@@ -109,5 +109,6 @@
             </Grid>
         </Grid>
         <Button Content="Solve" Margin="0,0,10,11" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="Solve_Clicked"/>
+        <Button Content="Clear" Margin="0,0,10,36" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="Clear_Clicked"/>
     </Grid>
 </Window>
